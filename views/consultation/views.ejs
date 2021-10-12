@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de agendamento</title>
+  <link rel="stylesheet" href="/relieve.css">
+</head>
+<body>
+
+
+  <%- include('../partials/navbar.ejs', {item: ['active', '', '', '']}); %>
+  <%- include('../partials/navbar_calendar.ejs', {item: ['', 'active', '', '']}); %>
+
+
+  <div class="container-large">
+    <form class="search" action="/search" method="GET">
+      <input type="search" name="search" id="search" placeholder="Digite o CPF ou...">
+      <button class="button">Psquisar</button>
+    </form>
+
+    <table class="table">
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Descricao</th>
+        <th>Data</th>
+        <th>Inicio</th>
+        <th>Fim</th>
+        <th>Status</th>  
+        <th>Ações</th>
+      </tr>
+      <% consultations.forEach(consultation => { %>
+        <tr>
+          <td><%=consultation.client.name%></td>
+          <td><%=consultation.client.email%></td>
+          <td><%=consultation.description%></td>
+          <td>
+            <% if (consultation.data_str_pt != undefined) {%>
+              <%=consultation.data_str_pt %></td>
+            <%}%>
+
+            <td><%=consultation.timestart%></td>
+            <td><%=consultation.timeend%></td>
+            <% if (consultation.finished) {%>
+            <td>Encerrado</td>
+          <%} else {%>
+            <td>Andamento</td>
+          <%} %>
+          <td>
+            <a href="/consultation/edit?id=<%= consultation.id %>" class="button orange"> Editar</a>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  </div>
+
+</body>
+</html>

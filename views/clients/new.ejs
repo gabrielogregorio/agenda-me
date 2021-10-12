@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de agendamento</title>
+  <link rel="stylesheet" href="/relieve.css">
+</head>
+<body> 
+
+  <%- include('../partials/navbar.ejs', {item: ['', 'active', '', '']}); %>
+  <%- include('../partials/navbar_client.ejs', {item: ['', 'active']}); %>
+
+ <div class="container">
+   <h1>Inserir novo cliente</h1>
+   <form action="/client/new/" method="POST">
+     <label for="name">Nome</label><p class="red"><%= name_error %></p>
+     <input type="text" name="name" id="name" placeholder="Nome do paciente" value="<%= name %>">
+
+     <label for="email">Email:</label><p class="red"><%= email_error %></p>
+     <input type="email" name="email" id="email" placeholder="E-mail do paciente" value="<%= email %>">
+
+     <label for="cpf">CPF:</label><p class="red"><%= cpf_error %></p>
+     <input maxlength=14 oninput="mascara(this)" type="text" name="cpf" id="cpf" placeholder="CPF do paciente" value="<%= cpf %>">
+
+     <button class="button">Adicionar Cliente</button>
+
+   </form>
+ </div>
+
+ <script>
+   // Criar um lib de mascaras mais eficiente.
+   // essa deixa passar quando digitado algum caracter
+   // No meio
+   function mascara(i){
+     var v = i.value;
+   
+     if(isNaN(v[v.length-1])){
+        i.value = v.substring(0, v.length-1);
+        return;
+    }
+   
+   if (v.length == 3 || v.length == 7) i.value += ".";
+   if (v.length == 11) i.value += "-";
+
+}
+ </script>
+  
+</body>
+</html>

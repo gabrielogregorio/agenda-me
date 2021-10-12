@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de agendamento</title>
+  <link rel="stylesheet" href="/relieve.css">
+</head>
+<body>
+  <%- include('../partials/navbar.ejs', {item: ['', 'active', '', '']}); %>
+  <%- include('../partials/navbar_client.ejs', {item: ['', '']}); %>
+
+ <div class="container">
+   <h1 class="red">Confirmar Exclusão de Cliente</h1>
+    <p><strong>Nome: </strong><%= item.name %></p>
+    <p><strong>E-mail: </strong><%= item.email %></p>
+    <p><strong>CPF: </strong><%= item.cpf %></p>
+    <br><a href="/client/remove/confirm/<%= item.id %>" class="red">Quero excluir esse cliente!</a> <br> <br>
+    
+
+    <a href="/clients/views" class="button blue">Cancelar</a>
+
+ </div>
+
+  
+  
+</body>
+</html>

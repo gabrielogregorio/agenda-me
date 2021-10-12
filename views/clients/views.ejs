@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de agendamento</title>
+  <link rel="stylesheet" href="/full/lib/main.css">
+  <script src="/full/lib/main.js"></script>
+  <link rel="stylesheet" href="/relieve.css">
+</head>
+<body>
+
+  <%- include('../partials/navbar.ejs', {item: ['', 'active', '', '']}); %>
+  <%- include('../partials/navbar_client.ejs', {item: ['active', '']}); %>
+
+
+  <div class="container">
+    <table class="table">
+      <tr>
+        <th>name</th>
+        <th>email</th>
+        <th>Ações</th>
+      </tr>
+      <% clients.forEach(client => { %>
+        <tr>
+          <td><%=client.name%></td>
+          <td><%=client.email%></td>
+          <td>
+            <div class="btn-items">
+              <a href="/client/remove/<%= client.id %>" class="button red">Deletar</a>
+              <a href="/client/edit/<%= client.id %>" class="button orange">Editar</a>
+              <a href="/consultation/new?id=<%= client.id %>" class="button blue">Agendar</a> 
+            </div>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  
+  </div>
+</div>
+</body>
+</html>

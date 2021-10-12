@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de agendamento</title>
+  <link rel="stylesheet" href="/full/lib/main.css">
+  <script src="/full/lib/main.js"></script>
+  <link rel="stylesheet" href="/relieve.css">
+</head>
+<body>
+
+  <%- include('partials/navbar.ejs', {item: ['active', '', '', '']}); %>
+  <%- include('partials/navbar_calendar.ejs', {item: ['active', '', '', '']}); %>
+
+  <div class="container-large">
+    <div id="calendar"></div>
+  </div>
+
+  <script>
+    var element = document.getElementById("calendar");
+    var calendar = new FullCalendar.Calendar(element, {
+      initialView: 'dayGridMonth', // forma de visualização
+      locale:'pt-br',
+      events: 'getcalendar', // Fazer uma consulta get nessa rota
+      eventClick: (info) => {
+        window.location.href = "/consultation/view/" + info.event.id;
+      }
+    })
+
+    calendar.render();
+  </script>
+</body>
+</html>

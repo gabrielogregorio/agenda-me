@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de agendamento</title>
+  <link rel="stylesheet" href="/relieve.css">
+</head> 
+<body>
+  <%- include('../partials/navbar.ejs', {item: ['active', '', '', '']}); %>
+  <%- include('../partials/navbar_calendar.ejs', {item: ['', '', '', '']}); %>
+
+ <div class="container">
+   <h1>Atualizar Dados</h1>
+
+
+    <form action="/consultation/edit" method="POST">
+      <p class="red"><%= errors.erro %></p>
+
+      
+    <% if (errors.listaConflitos.length > 0) {%>
+        <h3 class="red">Consultas conflitantes!</h3> 
+        <% errors.listaConflitos.forEach(i => {%>
+          <div class="item-conflito">
+            <a target="_blanck" href="/consultation/view/<%= i._id %>"><%=i.description%> - <%=i.timestart%>-<%=i.timeend%></a>
+          </div>
+        <% })%>
+    <%}%>
+
+      <input type="hidden" value="<%= item.id %>" name="id">
+      <label for="client">Escolha um usuário</label>
+      <% if(clientId.name != undefined) { %>
+        <input list="clientDatalist" id="client" value="<%= clientId.name %>">
+        <input type="hidden" name="client" id="client-hidden" value="<%= clientId.id %>">
+      <%} else {%>
+        <input list="clientDatalist" id="client">
+        <input type="hidden" name="client" id="client-hidden">
+      <%}%>
+      <datalist id="clientDatalist">
+        <% clients.forEach(client => {%>
+          <option data-value="<%= client.id %>" ><%= client.name %></option>
+        <%})%>
+      </datalist>
+
+      <label for="description">Descrição: </label>
+      <textarea name="description" id="description" cols="20" rows="3" placeholder="Descrição do procedimento"><%= item.description %></textarea>
+    
+      <label for="date">Data do agendamento: </label>
+      <input type="date" name="date" id="date" required value="<%= item.data_str_js %>">
+
+      <label for="timestart">Horário do agendamento: </label>
+      <input type="time" name="timestart" id="timestart" value="<%= item.timestart %>">
+
+      <label for="timeend">Horário final: </label>
+      <input type="time" name="timeend" id="timeend" value="<%= item.timeend %>">
+ 
+      <label for="status">Status da consulta</label>
+      <select id="status" name="status">
+        <% if (item.finished) {%>
+          <option value="0" selected>Encerrada</option>
+          <option value="1">Andamento</option>
+        <%} else {%>
+          <option value="0">Encerrada</option>
+          <option value="1" selected>Andamento</option>
+        <%}%>
+    </select><br><br>
+ 
+      
+      <input class="button green" type="submit" value="Atualizar Dados">
+        
+    </form>
+ </div>
+
+
+ <script>
+  // Criar um lib de mascaras mais eficiente.
+  // essa deixa passar quando digitado algum caracter
+  // No meio
+  function mascara(i){
+    var v = i.value;
+  
+    if(isNaN(v[v.length-1])){
+       i.value = v.substring(0, v.length-1);
+       return;
+   }
+  
+  if (v.length == 3 || v.length == 7) i.value += ".";
+  if (v.length == 11) i.value += "-";
+ }
+
+
+ // Solução para capturar somente um valor textual no datalist, usando um 
+ // Elemento hiden e atualizando seu valor de acordo com as alterações no datalist que não é enviado
+ // ao servidor
+ // https://qastack.com.br/programming/29882361/show-datalist-labels-but-submit-the-actual-value
+ document.getElementById('client').addEventListener('input', function(e) {
+     var input = e.target
+     var list = input.getAttribute('list')
+     var options = document.querySelectorAll('#' + list + ' option')
+     var hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden')
+     var inputValue = input.value;
+     hiddenInput.value = inputValue;
+
+     for(var i = 0; i < options.length; i++) {
+         var option = options[i];
+
+         if(option.innerText === inputValue) {
+             hiddenInput.value = option.getAttribute('data-value');
+             break;
+         }
+     }
+ });
+
+</script>
+  
+</body>
+</html>
