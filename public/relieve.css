@@ -1,0 +1,386 @@
+/* Global */
+:root {
+  --primary: #009980;
+  --inverse: #fff;
+  --box-shadow: 0 3px 3px 3px #45454517;
+  --box-shadow-minimal: 0 0px 1px 1px #45454517;
+  --red: #e63241;
+  --orange: #f3711a;
+  --blue: #3295e6;
+  --green: #0ccf2d;
+  --bg-primary: #eee;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 400;
+  color: #454545;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  overflow-y: scroll;
+  background-color: var(--bg-primary);
+}
+
+div.container {
+  max-width: 700px;
+  width: 100%;
+  padding: 40px;
+  margin: 10px auto;
+  overflow-x: auto;
+  background-color: var(--inverse);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+div.container-large {
+  width: 100%;
+  padding: 40px;
+  margin: 10px auto;
+  overflow-x: auto;
+  background-color: var(--inverse);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px 2%;
+}
+/* -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/* Navbar */
+nav.default {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-shadow: var(--box-shadow);
+  background-color: #3295e6;
+}
+
+nav.default a{
+  padding: 20px 10px;
+  text-decoration: none;
+  color: var(--inverse);
+}
+
+nav.default a.active{
+  background: #2a83cc;
+}
+
+/* -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/* Navbar Page */
+nav.page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-shadow: var(--box-shadow);
+  background-color:  #2a83cc;
+}
+
+nav.page a{
+  padding: 20px 10px;
+  text-decoration: none;
+  color: var(--inverse);
+}
+
+
+nav.page a::after{
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin-top: 5px;
+  background-color: transparent ;
+}
+
+nav.page a.active::after{
+  content: '';
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  height: 2px;
+  background-color: white
+}
+/* -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+
+
+/* breadcrumb */
+.breadcrumb {
+  background-color: #00806a;
+  padding: 10px;
+  color: white;
+}
+
+.breadcrumb a {
+  text-decoration: underline;
+  color: white;
+}
+
+.breadcrumb .active {
+  text-decoration: none;
+}
+/* -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/* Titles */
+h1, h2 {
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+}
+
+h3, h4, h5, h6 {
+  padding: 10px 0;
+  text-align: left;
+  width: 100%;
+}
+
+h1 { font-size: 26px; }
+h2 { font-size: 24px; }
+h3 { font-size: 22px; }
+h4 { font-size: 20px; }
+h5 { font-size: 18px; }
+h6 { font-size: 16px; }
+/* -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/* Form */
+input, textarea,select {
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #dedede;
+  width: 100%;
+  outline: none;
+}
+
+select > option {
+  color: #00806a;
+  font-size: 1.1rem;
+}
+
+datalist > option {
+  color: #00806a;
+  font-size: 1.1rem;
+}
+
+form > label {
+  display: block;
+}
+
+input:focus, textarea:focus {
+  border: 1px solid #9c9c9c;
+}
+
+textarea {
+  resize: vertical;
+}
+/* -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/* Tables */
+table.table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+}
+
+table.table td, table.table th {
+  border: 1px solid #dedede;
+  padding: 5px 10px;
+}
+
+table.table tr:hover {
+  background-color: rgb(236, 236, 236);
+}
+
+table.table th {
+  text-align: left;
+  border-bottom: 2px solid #45454555;
+  font-weight: 600;
+}
+
+.table tr > td {
+  word-wrap: break-word;
+  white-space: wrap;
+}
+
+.table td img {
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.table td > .button {
+  display: inline-block;  
+}
+
+.table td a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 4px;
+  background: var(--primary);
+  color: var(--inverse);
+  border: 0;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+table .btn-items {
+  display: flex;
+}
+
+.table tr:nth-child(2n) {
+  background-color: rgba(172, 172, 172, 0.164);
+}
+
+/* -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/* Video CSS */
+video {
+  width: 100%;
+}
+/* -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/* Figure CSS */
+figure {
+  width: 100%;
+}
+
+figure img {
+  width: 100%;
+}
+/* -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/* Footer */
+footer {
+  margin: 10px auto;
+  margin-bottom: 0;
+  background-color: var(--primary);
+  padding: 20px 2%;
+}
+
+footer p {
+  color: var(--inverse);
+  text-align: center;
+}
+/* -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/* Tags */
+label, p {
+  font-size: 16px;
+  padding: 5px 0;
+  padding-bottom: 2px;
+}
+
+a {
+  color: var(--primary);
+  padding: 5px;
+}
+
+.button {
+  padding: 8px;
+  background: var(--primary);
+  color: var(--inverse);
+  border: 0;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.button a {
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+  padding: 8px;
+  border: 0;
+  border-radius: 5px;
+  margin: 8px;
+  cursor: pointer;
+}
+
+strong {
+  font-weight: 700;
+}
+
+details {
+  padding: 20px;
+  background-color: #009980;
+  transition: 0.5s;
+  cursor: pointer;
+  border-bottom: 1px solid white;
+}
+
+details > summary {
+  color: white;
+  cursor: pointer;
+
+}
+details > p {
+  color: white;
+  padding: 10px 0;
+}
+
+details[open] summary ~ * {
+  animation: opacity 0.2s ease-in;
+}
+
+@keyframes opacity {
+  0%    {opacity: 0;}
+  100%  {opacity: 1;}
+}
+/* -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~ */
+
+/* Colors */
+.red { color: var(--red); }
+.orange { color: var(--orange);}
+.blue { color: var(--blue); }
+.green { color: var(--green); }
+
+.table td .red, .button.red {
+  background-color: var(--red);
+  color: var(--inverse);
+}
+
+.table td .orange, .button.orange {
+  background-color: var(--orange);
+  color: var(--inverse);
+}
+
+.table td .blue, .button.blue {
+  background-color: var(--blue);
+  color: var(--inverse);
+}
+
+.table td .green, .button.green {
+  background-color: var(--green);
+  color: var(--inverse);
+}
+/* Colors */
+
+.search {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.item-vertical {
+  display: flex;
+}
+
+.item-conflito {
+  padding: 10px 0px;
+  background-color: #dfdfdf71;
+}
+
+.item-conflito a {
+  text-decoration: none;
+  color: orange;
+}
