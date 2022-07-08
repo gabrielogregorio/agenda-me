@@ -15,7 +15,7 @@
     "express": "^4.17.1",
     "express-flash": "0.0.2",
     "express-session": "^1.17.2",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "mongoose": "^5.13.5",
     "nodemailer": "^6.6.3",
     "validator": "^13.6.0"
